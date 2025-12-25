@@ -12,7 +12,7 @@
 </script>
 
 <svelte:head>
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="{base}/favicon.svg" type="image/svg+xml" />
 </svelte:head>
 
 <main class="page">
