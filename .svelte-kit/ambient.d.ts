@@ -27,14 +27,15 @@
  */
 declare module '$env/static/private' {
 	export const NVM_INC: string;
+	export const CODEX_SANDBOX_NETWORK_DISABLED: string;
 	export const TERM_PROGRAM: string;
 	export const NODE: string;
 	export const INIT_CWD: string;
 	export const NVM_CD_FLAGS: string;
 	export const TERM: string;
 	export const SHELL: string;
-	export const HOMEBREW_REPOSITORY: string;
 	export const TMPDIR: string;
+	export const HOMEBREW_REPOSITORY: string;
 	export const npm_config_global_prefix: string;
 	export const TERM_PROGRAM_VERSION: string;
 	export const COLOR: string;
@@ -42,8 +43,8 @@ declare module '$env/static/private' {
 	export const npm_config_noproxy: string;
 	export const npm_config_local_prefix: string;
 	export const ZSH: string;
-	export const NVM_DIR: string;
 	export const USER: string;
+	export const NVM_DIR: string;
 	export const LS_COLORS: string;
 	export const COMMAND_MODE: string;
 	export const npm_config_globalconfig: string;
@@ -69,6 +70,7 @@ declare module '$env/static/private' {
 	export const ITERM_PROFILE: string;
 	export const npm_config_npm_version: string;
 	export const XPC_FLAGS: string;
+	export const CODEX_MANAGED_BY_NPM: string;
 	export const npm_config_node_gyp: string;
 	export const npm_package_version: string;
 	export const XPC_SERVICE_NAME: string;
@@ -79,8 +81,8 @@ declare module '$env/static/private' {
 	export const HOMEBREW_PREFIX: string;
 	export const ITERM_SESSION_ID: string;
 	export const npm_config_cache: string;
-	export const LESS: string;
 	export const LOGNAME: string;
+	export const LESS: string;
 	export const npm_lifecycle_script: string;
 	export const NVM_BIN: string;
 	export const npm_config_user_agent: string;
@@ -90,7 +92,6 @@ declare module '$env/static/private' {
 	export const npm_node_execpath: string;
 	export const npm_config_prefix: string;
 	export const COLORTERM: string;
-	export const NODE_ENV: string;
 }
 
 /**
@@ -121,14 +122,15 @@ declare module '$env/static/public' {
 declare module '$env/dynamic/private' {
 	export const env: {
 		NVM_INC: string;
+		CODEX_SANDBOX_NETWORK_DISABLED: string;
 		TERM_PROGRAM: string;
 		NODE: string;
 		INIT_CWD: string;
 		NVM_CD_FLAGS: string;
 		TERM: string;
 		SHELL: string;
-		HOMEBREW_REPOSITORY: string;
 		TMPDIR: string;
+		HOMEBREW_REPOSITORY: string;
 		npm_config_global_prefix: string;
 		TERM_PROGRAM_VERSION: string;
 		COLOR: string;
@@ -136,8 +138,8 @@ declare module '$env/dynamic/private' {
 		npm_config_noproxy: string;
 		npm_config_local_prefix: string;
 		ZSH: string;
-		NVM_DIR: string;
 		USER: string;
+		NVM_DIR: string;
 		LS_COLORS: string;
 		COMMAND_MODE: string;
 		npm_config_globalconfig: string;
@@ -163,6 +165,7 @@ declare module '$env/dynamic/private' {
 		ITERM_PROFILE: string;
 		npm_config_npm_version: string;
 		XPC_FLAGS: string;
+		CODEX_MANAGED_BY_NPM: string;
 		npm_config_node_gyp: string;
 		npm_package_version: string;
 		XPC_SERVICE_NAME: string;
@@ -173,8 +176,8 @@ declare module '$env/dynamic/private' {
 		HOMEBREW_PREFIX: string;
 		ITERM_SESSION_ID: string;
 		npm_config_cache: string;
-		LESS: string;
 		LOGNAME: string;
+		LESS: string;
 		npm_lifecycle_script: string;
 		NVM_BIN: string;
 		npm_config_user_agent: string;
@@ -184,7 +187,6 @@ declare module '$env/dynamic/private' {
 		npm_node_execpath: string;
 		npm_config_prefix: string;
 		COLORTERM: string;
-		NODE_ENV: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}
