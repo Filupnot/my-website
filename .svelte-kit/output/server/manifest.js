@@ -10,33 +10,18 @@ return {
 	assets: new Set(["favicon.svg","philip-face.png"]),
 	mimeTypes: {".svg":"image/svg+xml",".png":"image/png"},
 	_: {
-		client: {start:"_app/immutable/entry/start.BJzfy1DE.js",app:"_app/immutable/entry/app.C21y9h58.js",imports:["_app/immutable/entry/start.BJzfy1DE.js","_app/immutable/chunks/BGQY3lcP.js","_app/immutable/chunks/DYjCt7Qj.js","_app/immutable/chunks/7Cratiu_.js","_app/immutable/entry/app.C21y9h58.js","_app/immutable/chunks/DYjCt7Qj.js","_app/immutable/chunks/Bc5AGW9m.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
+		client: {start:"_app/immutable/entry/start.B4oZLxVo.js",app:"_app/immutable/entry/app.Dd_-4y8M.js",imports:["_app/immutable/entry/start.B4oZLxVo.js","_app/immutable/chunks/J1j13NYR.js","_app/immutable/chunks/CZmuBx9L.js","_app/immutable/chunks/CzN-7z24.js","_app/immutable/entry/app.Dd_-4y8M.js","_app/immutable/chunks/CZmuBx9L.js","_app/immutable/chunks/C7inNcmy.js"],stylesheets:[],fonts:[],uses_env_dynamic_public:false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
-			__memo(() => import('./nodes/1.js')),
-			__memo(() => import('./nodes/2.js')),
-			__memo(() => import('./nodes/3.js'))
+			__memo(() => import('./nodes/1.js'))
 		],
 		remotes: {
 			
 		},
 		routes: [
-			{
-				id: "/",
-				pattern: /^\/$/,
-				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 2 },
-				endpoint: null
-			},
-			{
-				id: "/about",
-				pattern: /^\/about\/?$/,
-				params: [],
-				page: { layouts: [0,], errors: [1,], leaf: 3 },
-				endpoint: null
-			}
+			
 		],
-		prerendered_routes: new Set([]),
+		prerendered_routes: new Set(["/","/about"]),
 		matchers: async () => {
 			
 			return {  };
