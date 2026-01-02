@@ -111,6 +111,12 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
+  .card-body {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
   .game-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 28px 50px rgba(32, 27, 47, 0.12);

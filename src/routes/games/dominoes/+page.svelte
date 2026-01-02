@@ -7,6 +7,7 @@
   let scores = [0, 0];
   let lastDelta = [1, 1];
   let confirmReset = false;
+  const lastPointerAt = teamNames.map(() => [0, 0]);
 
   const nudgeScore = (teamIndex: number, delta: number) => {
     lastDelta = lastDelta.map((value, index) => (index === teamIndex ? delta : value));
@@ -26,6 +27,22 @@
     }
 
     resetScores();
+  };
+
+  const handlePointerDown = (teamIndex: number, delta: number) => {
+    const controlIndex = delta > 0 ? 0 : 1;
+    lastPointerAt[teamIndex][controlIndex] = Date.now();
+    nudgeScore(teamIndex, delta);
+  };
+
+  const handleClick = (teamIndex: number, delta: number) => {
+    const controlIndex = delta > 0 ? 0 : 1;
+    const lastPointer = lastPointerAt[teamIndex][controlIndex];
+    if (lastPointer && Date.now() - lastPointer < 350) {
+      return;
+    }
+
+    nudgeScore(teamIndex, delta);
   };
 </script>
 
@@ -59,7 +76,8 @@
           <button
             class="score-control"
             type="button"
-            on:click={() => nudgeScore(teamIndex, 1)}
+            on:pointerdown={() => handlePointerDown(teamIndex, 1)}
+            on:click={() => handleClick(teamIndex, 1)}
             aria-label="Increase {team} score"
           >
             <svg class="arrow" viewBox="0 0 24 24" aria-hidden="true">
@@ -90,11 +108,12 @@
           <button
             class="score-control"
             type="button"
-            on:click={() => nudgeScore(teamIndex, -1)}
+            on:pointerdown={() => handlePointerDown(teamIndex, -1)}
+            on:click={() => handleClick(teamIndex, -1)}
             aria-label="Decrease {team} score"
           >
             <svg class="arrow arrow-down" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 18l-6-7h12l-6 7z" />
+              <path d="M12 6l6 7H6l6-7z" />
             </svg>
           </button>
         </div>
