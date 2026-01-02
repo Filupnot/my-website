@@ -1,5 +1,103 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { base } from "$app/paths";
+
+  const storageKey = "ios-a2hs-dismissed-at";
+  const dismissMs = 30 * 24 * 60 * 60 * 1000;
+  let showBanner = false;
+
+  const isStandalone = () => {
+    if (typeof window === "undefined") return false;
+    return (
+      window.matchMedia("(display-mode: standalone)").matches ||
+      (navigator as { standalone?: boolean }).standalone === true
+    );
+  };
+
+  const isIosSafari = () => {
+    if (typeof navigator === "undefined") return false;
+    const ua = navigator.userAgent;
+    const vendor = navigator.vendor || "";
+    const isIos =
+      /iPad|iPhone|iPod/.test(ua) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const isSafari = /Safari/.test(ua) && /Apple/.test(vendor);
+    const isOtherBrowser = /CriOS|FxiOS|EdgiOS|OPiOS/.test(ua);
+    const isInApp = /FBAN|FBAV|Instagram|Line|Twitter|GSA/.test(ua);
+
+    return isIos && isSafari && !isOtherBrowser && !isInApp;
+  };
+
+  const hasDesktopTestOverride = () => {
+    if (typeof window === "undefined") return false;
+    return new URLSearchParams(window.location.search).has("a2hs");
+  };
+
+  const recentlyDismissed = () => {
+    try {
+      const value = localStorage.getItem(storageKey);
+      if (!value) return false;
+      const dismissedAt = Number(value);
+      if (!Number.isFinite(dismissedAt)) return false;
+      return Date.now() - dismissedAt < dismissMs;
+    } catch {
+      return false;
+    }
+  };
+
+  const markDismissed = () => {
+    try {
+      localStorage.setItem(storageKey, String(Date.now()));
+    } catch {
+      // Ignore storage failures.
+    }
+  };
+
+  const dismissBanner = () => {
+    showBanner = false;
+    markDismissed();
+  };
+
+  onMount(() => {
+    const allowDesktopTest = hasDesktopTestOverride();
+    if (
+      (!isIosSafari() && !allowDesktopTest) ||
+      isStandalone() ||
+      recentlyDismissed()
+    ) {
+      return;
+    }
+
+    let timerId: number | undefined;
+
+    const handleInteraction = () => {
+      showBanner = true;
+      cleanup();
+    };
+
+    const cleanup = () => {
+      window.removeEventListener("pointerdown", handleInteraction);
+      window.removeEventListener("scroll", handleInteraction);
+      window.removeEventListener("keydown", handleInteraction);
+      if (timerId) window.clearTimeout(timerId);
+    };
+
+    window.addEventListener("pointerdown", handleInteraction, { once: true });
+    window.addEventListener("scroll", handleInteraction, {
+      once: true,
+      passive: true
+    });
+    window.addEventListener("keydown", handleInteraction, { once: true });
+
+    timerId = window.setTimeout(() => {
+      showBanner = true;
+      cleanup();
+    }, 2000);
+
+    return () => {
+      cleanup();
+    };
+  });
 
   const games = [
     {
@@ -45,6 +143,31 @@
     {/each}
   </div>
 </section>
+
+{#if showBanner}
+  <aside
+    class="a2hs-banner"
+    role="region"
+    aria-label="Add to Home Screen instructions"
+  >
+    <div class="a2hs-text">
+      <strong>Add to Home Screen</strong>
+      <ol>
+        <li>Tap Share (square with up arrow).</li>
+        <li>Tap “Add to Home Screen”.</li>
+        <li>Tap Add.</li>
+      </ol>
+    </div>
+    <button
+      class="a2hs-dismiss"
+      type="button"
+      on:click={dismissBanner}
+      aria-label="Dismiss Add to Home Screen instructions"
+    >
+      Close
+    </button>
+  </aside>
+{/if}
 
 <style>
   :global(.site-header) {
@@ -149,6 +272,62 @@
 
     .game-card {
       padding: 1.25rem;
+    }
+  }
+
+  .a2hs-banner {
+    position: fixed;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    background: #111;
+    color: #fff;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+  }
+
+  .a2hs-text strong {
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  .a2hs-text ol {
+    margin: 0;
+    padding-left: 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  .a2hs-dismiss {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: transparent;
+    color: inherit;
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    cursor: pointer;
+  }
+
+  .a2hs-dismiss:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 480px) {
+    .a2hs-banner {
+      left: 0.75rem;
+      right: 0.75rem;
+      bottom: 0.75rem;
+      grid-template-columns: 1fr;
+      justify-items: start;
+    }
+
+    .a2hs-dismiss {
+      justify-self: end;
     }
   }
 </style>

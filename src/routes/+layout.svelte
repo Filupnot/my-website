@@ -6,7 +6,13 @@
 
 <svelte:head>
   <link rel="icon" href="{base}/favicon.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="{base}/darts-thumb.png" />
+  <link rel="icon" href="{base}/icons/icon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="{base}/icons/icon-16.png" sizes="16x16" type="image/png" />
+  <link rel="apple-touch-icon" href="{base}/icons/apple-touch-icon.png" sizes="180x180" />
+  <link rel="manifest" href="{base}/manifest.json" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Scorecards" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 </svelte:head>
 
 <main class="page">
