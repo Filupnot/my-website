@@ -5,7 +5,7 @@
     {
       title: "Darts (Cricket)",
       path: "/games/darts-cricket",
-      thumbnail: "/darts-thumb.svg"
+      thumbnail: "/darts-thumb.png"
     }
   ];
 </script>
@@ -42,6 +42,10 @@
 </section>
 
 <style>
+  :global(.site-header) {
+    display: none;
+  }
+
   :global(body) {
     background: radial-gradient(circle at top, #f8f4ff 0%, #f1f5f8 45%, #f7efe3 100%);
   }

@@ -39,6 +39,6 @@ declare module "$app/types" {
 		};
 		Pathname(): "/" | "/about" | "/about/" | "/games" | "/games/" | "/games/darts-cricket" | "/games/darts-cricket/";
 		ResolvedPathname(): `${"" | `/${string}`}${ReturnType<AppTypes['Pathname']>}`;
-		Asset(): "/.DS_Store" | "/cricket-one.png" | "/cricket-three.png" | "/cricket-two.png" | "/darts-thumb.svg" | "/favicon.svg" | "/philip-face.png" | string & {};
+		Asset(): "/.DS_Store" | "/cricket-one.png" | "/cricket-three.png" | "/cricket-two.png" | "/darts-thumb.png" | "/darts-thumb.svg" | "/favicon.svg" | "/philip-face.png" | string & {};
 	}
 }
