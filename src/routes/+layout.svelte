@@ -19,7 +19,7 @@
   <link rel="icon" href="{base}/icons/icon-16.png" sizes="16x16" type="image/png" />
   <link rel="apple-touch-icon" href="{base}/icons/apple-touch-icon.png" sizes="180x180" />
   {#if isGamesPath($page.url.pathname)}
-    <link rel="manifest" href="{base}/manifest-games.json" />
+    <link rel="manifest" href="{base}/games/manifest.json" />
   {:else}
     <link rel="manifest" href="{base}/manifest.json" />
   {/if}
