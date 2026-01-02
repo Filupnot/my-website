@@ -1,6 +1,14 @@
-# My Website 2
+# filupnot.github.io
 
-Static SvelteKit site with TypeScript, designed for GitHub Pages hosting.
+Personal SvelteKit site for Philip Knott. Includes a simple homepage and a small collection of game score tools.
+
+## Pages
+
+- Home (`/`) with hero intro and a link to the game tools.
+- About (`/about`).
+- Game Score Tools (`/games`), with two score trackers:
+  - Darts (Cricket) (`/games/darts-cricket`)
+  - Dominoes (`/games/dominoes`)
 
 ## Local Development
 
@@ -9,28 +17,37 @@ npm install
 npm run dev
 ```
 
-## Build
+## Build and Preview
 
 ```bash
 npm run build
+npm run preview
 ```
 
 The static output is generated in `build/`.
 
+## Tests
+
+```bash
+npm run test
+npm run test:unit
+npm run test:integration
+```
+
 ## GitHub Pages Deployment
 
-1. Build with a base path if your site is served from a repo subpath:
+1. Build the site:
    ```bash
-   BASE_PATH=/my-website-2 npm run build
+   npm run build
    ```
 2. Deploy the contents of `build/` to your `gh-pages` branch.
 3. In GitHub Pages settings, select the `gh-pages` branch.
 
-## Route 53 + Custom Domain
+If this repo is ever hosted under a subpath, set a base path during build:
 
-1. Add a `CNAME` file to `static/` with your custom domain (for example, `www.example.com`).
-2. In Route 53, create an `A` record (alias) to GitHub Pages and a `CNAME` for `www`.
-3. Set the custom domain in GitHub Pages settings and enable HTTPS.
+```bash
+BASE_PATH=/filupnot.github.io npm run build
+```
 
 ## Adding New Routes
 

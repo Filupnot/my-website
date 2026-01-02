@@ -211,7 +211,7 @@
     <div class="hero-text">
       <p class="eyebrow">Hello, I am</p>
       <h2>Philip Knott</h2>
-      <p class="subhead">Software developer.</p>
+      <p class="subhead">Software developer. Owns a domain.</p>
     </div>
   </section>
 
@@ -229,6 +229,10 @@
 </div>
 
 <style>
+  :global(body) {
+    background: radial-gradient(circle at top, #f2efe8 0%, #e5edf2 45%, #f7f4ee 100%);
+  }
+
   .home-stack {
     position: relative;
     z-index: 1;
