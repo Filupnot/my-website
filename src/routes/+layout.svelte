@@ -1,6 +1,7 @@
 <script lang="ts">
   import "../lib/styles/global.css";
   import { base } from "$app/paths";
+  import { page } from "$app/stores";
 
 </script>
 
@@ -9,7 +10,11 @@
   <link rel="icon" href="{base}/icons/icon-32.png" sizes="32x32" type="image/png" />
   <link rel="icon" href="{base}/icons/icon-16.png" sizes="16x16" type="image/png" />
   <link rel="apple-touch-icon" href="{base}/icons/apple-touch-icon.png" sizes="180x180" />
-  <link rel="manifest" href="{base}/manifest.json" />
+  {#if $page.url.pathname === `${base}/games` || $page.url.pathname.startsWith(`${base}/games/`)}
+    <link rel="manifest" href="{base}/manifest-games.json" />
+  {:else}
+    <link rel="manifest" href="{base}/manifest.json" />
+  {/if}
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="Scorecards" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
