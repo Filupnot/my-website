@@ -27,7 +27,7 @@ export {};
 
 declare module "$app/types" {
 	export interface AppTypes {
-		RouteId(): "/" | "/about" | "/games" | "/games/darts-cricket" | "/games/dominoes";
+		RouteId(): "/" | "/about" | "/games" | "/games/darts-cricket" | "/games/dominoes" | "/games/oh-hell";
 		RouteParams(): {
 			
 		};
@@ -36,10 +36,11 @@ declare module "$app/types" {
 			"/about": Record<string, never>;
 			"/games": Record<string, never>;
 			"/games/darts-cricket": Record<string, never>;
-			"/games/dominoes": Record<string, never>
+			"/games/dominoes": Record<string, never>;
+			"/games/oh-hell": Record<string, never>
 		};
-		Pathname(): "/" | "/about" | "/about/" | "/games" | "/games/" | "/games/darts-cricket" | "/games/darts-cricket/" | "/games/dominoes" | "/games/dominoes/";
+		Pathname(): "/" | "/about" | "/about/" | "/games" | "/games/" | "/games/darts-cricket" | "/games/darts-cricket/" | "/games/dominoes" | "/games/dominoes/" | "/games/oh-hell" | "/games/oh-hell/";
 		ResolvedPathname(): `${"" | `/${string}`}${ReturnType<AppTypes['Pathname']>}`;
-		Asset(): "/.DS_Store" | "/cricket-one.png" | "/cricket-three.png" | "/cricket-two.png" | "/darts-thumb.png" | "/darts-thumb.svg" | "/dominoes-thumb.svg" | "/favicon.svg" | "/philip-face.png" | string & {};
+		Asset(): "/.DS_Store" | "/cricket-one.png" | "/cricket-three.png" | "/cricket-two.png" | "/darts-thumb.png" | "/darts-thumb.svg" | "/dominoes-thumb.svg" | "/favicon.svg" | "/games/manifest.json" | "/icons/apple-touch-icon.png" | "/icons/icon-16.png" | "/icons/icon-192.png" | "/icons/icon-32.png" | "/icons/icon-512.png" | "/manifest.json" | "/oh-hell-thumb.svg" | "/philip-face.png" | string & {};
 	}
 }

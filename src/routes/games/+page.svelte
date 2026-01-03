@@ -106,6 +106,11 @@
       thumbnail: "/darts-thumb.png"
     },
     {
+      title: "Oh Hell!",
+      path: "/games/oh-hell",
+      thumbnail: "/oh-hell-thumb.svg"
+    },
+    {
       title: "Dominoes",
       path: "/games/dominoes",
       thumbnail: "/dominoes-thumb.svg"
