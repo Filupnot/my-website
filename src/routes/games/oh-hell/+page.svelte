@@ -10,7 +10,7 @@
   const minPlayers = 2;
   const maxPlayers = 8;
 
-  let players = ["PLAYER 1", "PLAYER 2", "PLAYER 3", "PLAYER 4"];
+  let players = ["", "", "", ""];
   let maxHand = 8;
   let useReturnTrip = true;
   let rounds: Round[] = [];
@@ -48,12 +48,15 @@
     );
   };
 
+  const displayNameFor = (player: string, index: number) =>
+    player.trim() ? player : `PLAYER ${index + 1}`;
+
   const addPlayer = () => {
     if (players.length >= maxPlayers) {
       return;
     }
 
-    players = [...players, `PLAYER ${players.length + 1}`];
+    players = [...players, ""];
     rounds = rounds.map((round) => ({
       ...round,
       bids: [...round.bids, null],
@@ -240,6 +243,7 @@
                   class="player-input"
                   value={player}
                   maxlength="14"
+                  placeholder={`PLAYER ${playerIndex + 1}`}
                   on:input={(event) =>
                     renamePlayer(
                       playerIndex,
@@ -311,7 +315,7 @@
             {#each players as player, playerIndex}
               <div class="player-score-row">
                 <div class="player-name">
-                  <span>{player}</span>
+                  <span>{displayNameFor(player, playerIndex)}</span>
                   <span class="total-badge">
                     {#if
                       roundPhases[currentRoundIndex] === "results" &&
@@ -329,6 +333,8 @@
                       type="number"
                       min="0"
                       max={rounds[currentRoundIndex].handSize}
+                      inputmode="numeric"
+                      pattern="[0-9]*"
                       value={rounds[currentRoundIndex].bids[playerIndex] ?? ""}
                       on:input={(event) =>
                         updateValue(
@@ -354,6 +360,8 @@
                       type="number"
                       min="0"
                       max={rounds[currentRoundIndex].handSize}
+                      inputmode="numeric"
+                      pattern="[0-9]*"
                       value={rounds[currentRoundIndex].bids[playerIndex] ?? ""}
                       disabled
                     />
@@ -372,6 +380,8 @@
                         type="number"
                         min="0"
                         max={rounds[currentRoundIndex].handSize}
+                        inputmode="numeric"
+                        pattern="[0-9]*"
                         value={rounds[currentRoundIndex].takes[playerIndex] ?? ""}
                         on:input={(event) =>
                           updateValue(
@@ -472,6 +482,7 @@
     font-family: "Space Grotesk", system-ui, sans-serif;
     color: #1b1a17;
     align-items: center;
+    width: min(1100px, 100%);
   }
 
   .breadcrumb {
@@ -494,7 +505,7 @@
     gap: 1.3rem;
     border: 1px solid rgba(27, 26, 23, 0.08);
     box-shadow: 0 30px 60px rgba(27, 26, 23, 0.12);
-    width: min(980px, 100%);
+    width: 100%;
   }
 
   .board-head {

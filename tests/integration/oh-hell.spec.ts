@@ -3,6 +3,24 @@ import { test, expect } from "@playwright/test";
 test.describe("oh hell layout", () => {
   test.use({ viewport: { width: 390, height: 844 } });
 
+  test("round board matches game card width", async ({ page }) => {
+    await page.goto("/games");
+
+    const card = page.locator(".game-card").first();
+    await expect(card).toBeVisible();
+    const cardBox = await card.boundingBox();
+    expect(cardBox).not.toBeNull();
+
+    await page.goto("/games/oh-hell");
+    const board = page.locator(".board");
+    await expect(board).toBeVisible();
+    const boardBox = await board.boundingBox();
+    expect(boardBox).not.toBeNull();
+
+    const widthDelta = Math.abs((cardBox?.width ?? 0) - (boardBox?.width ?? 0));
+    expect(widthDelta).toBeLessThan(1);
+  });
+
   test("row width stays stable after entering scores", async ({ page }) => {
     await page.goto("/games/oh-hell");
 
