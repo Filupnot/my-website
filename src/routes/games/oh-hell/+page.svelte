@@ -217,8 +217,8 @@
         {#if view === "setup"}
           <h1>Bid, take, and score.</h1>
           <p class="subhead">
-            Score 10 + your bid when you hit it exactly. Miss the bid and lose the
-            difference.
+            Hit your bid exactly to score 10 + tricks (or 5 for a zero bid). Miss
+            the bid and you just score the tricks you took.
           </p>
         {:else}
           <h1>Round {currentRoundIndex + 1} of {rounds.length}</h1>
