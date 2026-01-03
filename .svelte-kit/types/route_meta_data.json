@@ -14,5 +14,8 @@
 	],
 	"/games/dominoes": [
 		"src/routes/+layout.ts"
+	],
+	"/games/oh-hell": [
+		"src/routes/+layout.ts"
 	]
 }
